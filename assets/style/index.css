@@ -24,7 +24,7 @@ input,select {
 }
 
 select {
-    width: 185px;
+    width: 250px;
     color: #fff;
     background-color: var(--ap-background-color-other);
 }
