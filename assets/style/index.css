@@ -24,7 +24,9 @@ input,select {
 }
 
 select {
-    padding-left: 5px;
+    appearance: none;
+    height: 35px;
+    padding-left: 10px;
     width: 250px;
     color: #fff;
     background-color: var(--ap-background-color-other);
@@ -49,7 +51,7 @@ input[type=button] {
 }
 
 .set-shape {
-    height: 45px;
+    height: 55px;
 }
 
 .background {

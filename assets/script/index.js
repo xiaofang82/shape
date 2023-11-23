@@ -62,6 +62,7 @@ const btnCreate = selectById('btn-create');
 const selColor = selectById('color');
 const selShape = selectById('shape');
 const infor = select('.infor');
+
 const shape = new Shape();
 let number = 0;
 
@@ -105,19 +106,26 @@ function addShape(id,shapeObj){
     const parent = selectById('block' + id);
     const obj = shapeObj.getInfo(id);
     const infor = select('.infor');
+    const colorRange = {
+        blue: '#09f',
+        green: '#9f0',
+        orange: '#f90',
+        pink: '#f09',
+        purple: '#90f',
+    }
 
     newShape.classList.add('block');
     
-    if(obj.shape == 'Circle') {
+    if(obj.shape == 'circle') {
         newShape.classList.add('circle');
     }
-    newShape.style.background = obj.color;
+    newShape.style.background = colorRange[obj.color];
     newShape.id = id;
     parent.append(newShape);
     onEvent('click', newShape, function(event){
         const myobj = shapeObj.getInfo(this.id);
         
-        infor.innerHTML = `Unit: ${this.id} ${myobj.shape} ${myobj.color}`;
+        infor.innerHTML = `Unit: ${this.id} ${myobj.color} ${myobj.shape}`;
     });
 }
 
