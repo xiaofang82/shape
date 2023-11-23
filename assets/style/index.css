@@ -83,6 +83,11 @@ input[type=button] {
     height: 100px;
 }
 
+.infor {
+    text-align: center;
+    font-size: 12px;
+}
+
 @keyframes moveToLeft {
     0% {
       transform: translateX(400px);

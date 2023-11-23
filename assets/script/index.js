@@ -61,19 +61,23 @@ const background = select('.background');
 const btnCreate = selectById('btn-create');
 const selColor = selectById('color');
 const selShape = selectById('shape');
+const infor = select('.infor');
 const shape = new Shape();
 let number = 0;
 
 initBoard(background);
 onEvent('click', btnCreate, function(){
+    if(number >= 24){
+        infor.innerHTML = 'Storage is full!';
+    }
     if (selColor.value != '' && selShape.value !='' && number < 24){
+        infor.innerHTML = '';
         shape.color = selColor.value;
         shape.shape = selShape.value;
         number = shape.createShape();
-        let shapeInfo = shape.getInfo(number);
        // console.log(number);
         //console.log(shapeInfo);
-        addShape(number, shapeInfo);
+        addShape(number,shape);
     }
 })
 
@@ -96,15 +100,24 @@ function initBoard(parent, row = 4, colum = 6) {
     }
 }
 
-function addShape(id,obj){
+function addShape(id,shapeObj){
     const newShape = create('div');
     const parent = selectById('block' + id);
+    const obj = shapeObj.getInfo(id);
+    const infor = select('.infor');
+
     newShape.classList.add('block');
     
     if(obj.shape == 'Circle') {
         newShape.classList.add('circle');
     }
     newShape.style.background = obj.color;
+    newShape.id = id;
     parent.append(newShape);
+    onEvent('click', newShape, function(event){
+        const myobj = shapeObj.getInfo(this.id);
+        
+        infor.innerHTML = `Unit: ${this.id} ${myobj.shape} ${myobj.color}`;
+    });
 }
 
